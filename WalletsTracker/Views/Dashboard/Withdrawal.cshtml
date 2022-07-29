@@ -1,0 +1,42 @@
+﻿@model WalletsTracker.ViewModels.WithdrawalVM
+@section itmesUl{
+    <li><a asp-action="Index" asp-controller="Dashboard">الرئيسية</a></li>
+    <li class="is-active"><a asp-action="Wallets" asp-controller="Dashboard">‌المحافظ</a></li>
+}
+<div class="main-content container-fluid">
+    <div class="row">
+        <div class="col-12 form-max-width my-4">
+            <div class="section-info">
+                الرجاء التأكد من البيانات لأن لن يمكنك التعديل عليها أبداً.
+            </div>
+            <form method="post" asp-action="Withdrawal" asp-controller="Dashboard" asp-antiforgery="true">
+                <br>
+                <input asp-for="NumberPhone" type="hidden"/>
+                <h2>عملية سحب خاصة بالمحفظة  @Model.NumberPhone</h2>
+                <br>
+                @if (ViewData["msg"] != null)
+                {
+                    <div class="section-danger">
+                        <span>@ViewData["msg"]</span>
+                    </div>
+                }
+                <br>
+                <div class="row">
+                    <div class="input-block col-12 margin-bottom-12">
+                        <label class="input-help text-right">
+                            المبلغ المراد سحبه
+                        </label>
+                        <input asp-for="Balance" class="text" placeholder="المبلغ المراد سحبه" />
+                        <span asp-validation-for="Balance" class="text-danger"></span>
+                    </div>
+                    <br>
+                </div>
+                <br>
+                <div class="row">
+                    <button class="jf-button margin-left-right-auto jf-button-design">سحب المبلغ</button>
+                    <a asp-action="Index" asp-controller="Dashboard" class="jf-button margin-left-right-auto jf-button-design">الرجوع إلى الخلف</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

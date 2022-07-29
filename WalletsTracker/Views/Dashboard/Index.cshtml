@@ -1,0 +1,92 @@
+﻿@model IEnumerable<WalletsTracker.ViewModels.DahboardWallets>
+@section itmesUl{
+    <li class="is-active"><a asp-action="Index" asp-controller="Dashboard">الرئيسية</a></li>
+    <li><a asp-action="Wallets" asp-controller="Dashboard">‌المحافظ</a></li>
+}
+<div class="main-content container-fluid">
+    <div id="carbon-block" style="margin:30px auto"></div>
+    <div class="row mt-3">
+        <div class="col-md-6 col-12 my-2">
+            <div class="top-card jf-box row">
+                <div class="col-3 top-card-number"><p>المبلغ المتاح</p></div>
+                <div class="col-9">
+                    <h4 class="font-weight-bold">@ViewBag.AllBalanceWallets</h4>
+                    <br>
+                    <p>جنيه</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-12 my-2">
+            <div class="top-card jf-box row">
+                <div class="col-3 top-card-number"><p>عدد المحافظ</p></div>
+                <div class="col-9">
+                    <h4 class="font-weight-bold">@ViewBag.NumberWallets</h4>
+                    <br>
+                    <p>محفظة</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    @if (Model == null || Model.Count() == 0)
+    {
+        <div class="row mt-3">
+            <div class="col-md-12 col-12 my-2">
+                <div class="jf-box">
+                    <h3>لا يوجد محافظ متاحة </h3>
+                    <hr>
+                </div>
+            </div>
+        </div>
+
+    }
+    else
+    {
+        foreach (var item in Model)
+        {
+            <div class="row mt-3">
+                <div class="col-md-12 col-12 my-2">
+                    <div class="jf-box">
+                        <h3>@item.WalletTitle</h3>
+                        <hr>
+                        <table class="table table-striped table-responsive">
+                            <tbody>
+                                <tr>
+                                    <th scope="row">رقم المحفظة :</th>
+                                    <td>@item.WalletNumber</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">رصيد المحفظة :</th>
+                                    <td>@item.WalletBalance</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">المبلغ المتاح للإيداع اليوم :</th>
+                                    <td>@item.WalletAmountAvailableToday ج</td>
+                                </tr>
+
+                                <tr>
+                                    <th scope="row"> عمليات  :</th>
+                                    <td>
+                                        <a asp-action="Withdrawal" asp-controller="Dashboard" asp-route-id="@item.WalletId" class="btn-wallet">
+                                            سحب
+                                        </a>
+                                        <a asp-action="Deposit" asp-controller="Dashboard" asp-route-id="@item.WalletId" class="btn-wallet">
+                                            إيداع
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"> نسخ الرقم :</th>
+                                    <td>
+                                        <button class="btn-copy" onclick="navigator.clipboard.writeText('@item.WalletNumber');">
+                                            نسخ للحافظة
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>

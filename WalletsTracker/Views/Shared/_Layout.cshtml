@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>تتبع المحافظ الإلكترونية</title>
+    <link href="/favicon.ico" rel="shortcut icon" />
+    <link rel="stylesheet" href="/dashboard/css/bootstrap-grid.css">
+    <link rel="stylesheet" href="/dashboard/css/style.css" asp-append-version="true">
+    <link rel="stylesheet" href="/dashboard/css/css-comps.css" asp-append-version="true">
+    <link rel="stylesheet" href="/dashboard/css/re575.css">
+    <link rel="stylesheet" href="/dashboard/css/re768.css">
+    <link rel="stylesheet" href="/dashboard/css/re991.css">
+    <link rel="stylesheet" href="/dashboard/css/re1200.css">
+</head>
+<body>
+    <div class="right-side-block">
+        <aside>
+            <span class="material-icons material-icons-outlined bars">menu</span>
+            <div class="profile-block">
+                <div class="profile__img">
+                    <img src="/dashboard/img/Profile.png" asp-append-version="true">
+                </div>
+                <span class="profile__name">@HttpContextAccessor.HttpContext.Session.GetString("UserNameWalletApp")</span>
+            </div>
+            <br>
+            <ul>
+                @RenderSection("itmesUl", true)             
+            </ul>
+        </aside>
+    </div>
+    <div class="left-side-block">
+        <header class="header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 header-block">
+                        <div class="header__right">
+                            <a class="menu-icon bars">
+                                <div class="material-icons md-24 material-icons-outlined">--</div>
+                            </a>
+                            <h1 class="logo">تعقب المحافظ</h1>
+                        </div>
+                        <div class="header__left">
+                            <a asp-action="Logout" asp-controller="Home">
+                                <span class="material-icons material-icons-outlined" title="">تسجيل خروج</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main>
+            @RenderBody()
+        </main>
+    </div>
+    <script src="/dashboard/js/jquery.js"></script>
+    <script src="/dashboard/js/main.js" asp-append-version="true"></script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+﻿@model WalletsTracker.Models.RegisterVM
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wallets Tracker</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <div id="main-wrapper" class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-10">
+                <div class="card border-0">
+                    <div class="card-body p-0">
+                        <div class="row no-gutters">
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="mb-5">
+                                        <h3 class="h4 font-weight-bold text-theme">Wallets Tracker</h3>
+                                    </div>
+                                    <p class="text-muted mt-2 mb-5">Create New Account Now.</p>
+                                    @if (ViewData["msgRegister"] != null)
+                                    {
+                                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                            <strong>Message: </strong> @ViewData["msgRegister"]
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                    }
+                                    <form method="post" asp-action="Register" asp-controller="Home" asp-antiforgery="true">
+                                        <div class="form-group">
+                                            <label for="InputUsername">Username</label>
+                                            <input asp-for="Username" type="text" class="form-control" id="InputUsername">
+                                            <span asp-validation-for="Username" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="InputPassword">Password</label>
+                                            <input asp-for="Password" type="password" class="form-control" id="InputPassword">
+                                            <span asp-validation-for="Password" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="InputConfirmPassword">Confirm Password</label>
+                                            <input asp-for="ConfirmPassword" type="password" class="form-control" id="InputConfirmPassword">
+                                            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                                        </div>
+                                        <button type="submit" class="btn btn-theme btn-block">Register</button>
+                                    </form>
+                                    <p class="text-muted mt-3 text-right">Login Now <a asp-action="Login" asp-controller="Home">From Here </a></p>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 d-none d-lg-inline-block">
+                                <div class="account-block rounded-right">
+                                    <div class="overlay rounded-right"></div>
+                                    <div class="account-testimonial">
+                                        <h4 class="text-white mb-4">Wallets Tracker!</h4>
+                                        <p class="lead text-white">"Now, you can track your e-wallets."</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+﻿@model IEnumerable<WalletsTracker.ViewModels.WalletsVM>
+@section itmesUl{
+    <li><a asp-action="Index" asp-controller="Dashboard">الرئيسية</a></li>
+    <li class="is-active"><a asp-action="Wallets" asp-controller="Dashboard">‌المحافظ</a></li>
+}
+@{
+    int i = 0;
+}
+<div class="main-content container-fluid">
+    <br>
+    <div class="row">
+        <a class="jf-button" asp-action="AddWallet" asp-controller="Dashboard">إضافة محفظة جديدة</a>
+    </div>                <br>
+    <div class="table__table">
+        <table class="table">
+            <thead role="rowgroup">
+                <tr role="row" class="title-row">
+                    <th>م</th>
+                    <th>رقم المحفظة</th>
+                    <th>عنوان المحفظة</th>
+                    <th>رصيد المحفظة</th>
+                    <th>أدوات</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model == null || Model.Count() == 0)
+                {
+                    <tr role="row">
+                        <td colspan="5">لا يوجد محافظ متاحة</td>
+                    </tr>
+                }
+                else
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr role="row">
+                            <td>@(++i)</td>
+                            <td>@item.NumberPhone</td>
+                            <td>@item.Title</td>
+                            <td>@item.Balance</td>
+                            <td>
+                                <a asp-action="DetailsWallet" asp-controller="Dashboard" asp-route-id="@item.Id" class="material-icons material-icons-outlined">تفاصيل</a>
+                                &nbsp;
+                                <a asp-action="DeleteWallet" asp-controller="Dashboard" asp-route-id="@item.Id" class="material-icons material-icons-outlined">حذف</a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,55 @@
+﻿@model WalletsTracker.ViewModels.AddWalletVM
+@section itmesUl{
+    <li><a asp-action="Index" asp-controller="Dashboard">الرئيسية</a></li>
+    <li class="is-active"><a asp-action="Wallets" asp-controller="Dashboard">‌المحافظ</a></li>
+}
+<div class="main-content container-fluid">
+    <div class="row">
+        <div class="col-12 form-max-width my-4">
+            <div class="section-info">
+                الرجاء التأكد من البيانات لأنه لا يمكنك التعديل عليها أبداً.
+            </div>
+            <form method="post" asp-action="AddWallet" asp-controller="Dashboard" asp-antiforgery="true">
+                <br>
+                <h2>إضافة محفظة جديدة</h2>
+                <br>
+                @if (ViewData["msg"] != null)
+                {
+                    <div class="section-danger">
+                        <span>@ViewData["msg"]</span>
+                    </div>
+                }
+                <br>
+                <br>
+                <div class="row">
+                    <div class="input-block col-12 margin-bottom-12">
+                        <label class="input-help text-right">
+                            عنوان المحفظة
+                        </label>
+                        <input asp-for="Title" class="text" placeholder="عنوان المحفظة" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+                    <br>
+                    <div class="input-block col-6 margin-bottom-12">
+                        <label class="input-help text-right">
+                            رقم المحفظة
+                        </label>
+                        <input asp-for="NumberPhone" class="text" placeholder="رقم المحفظة" />
+                        <span asp-validation-for="NumberPhone" class="text-danger"></span>
+                    </div>
+                    <br>
+                    <div class="input-block col-6">
+                        <label class="input-help text-right margin-bottom-12">
+                            رصيد المحفظة
+                        </label>
+                        <input asp-for="Balance" class="text" placeholder="رصيد المحفظة" />
+                        <span asp-validation-for="Balance" class="text-danger"></span>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <button class="jf-button margin-left-right-auto jf-button-design">إضافة المحفظة</button>
+            </form>
+        </div>
+    </div>
+</div>

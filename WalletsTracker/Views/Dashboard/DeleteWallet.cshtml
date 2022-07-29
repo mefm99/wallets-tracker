@@ -1,0 +1,26 @@
+﻿@model WalletsTracker.ViewModels.WalletsVM
+@section itmesUl{
+    <li><a asp-action="Index" asp-controller="Dashboard">الرئيسية</a></li>
+    <li class="is-active"><a asp-action="Wallets" asp-controller="Dashboard">‌المحافظ</a></li>
+}
+<div class="main-content container-fluid">
+    <div class="row">
+        <div class="col-12 form-max-width my-4">
+            @if (ViewData["msg"] != null)
+            {
+                <div class="section-danger">
+                    <span>@ViewData["msg"]</span>
+                </div>
+            }
+            <form method="post" asp-action="DeleteWallet" asp-controller="Dashboard" asp-antiforgery="true">
+                <br>
+                <h2>هل أنت متأكد من حذف المحفظة رقم @Model.NumberPhone</h2>
+                <br>
+                <div class="row">
+                    <button class="jf-button margin-left-right-auto jf-button-design">حذف المحفظة</button>
+                    <a asp-action="Wallets" asp-controller="Dashboard" class="jf-button margin-left-right-auto jf-button-design">الرجوع إلى الخلف</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
